@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    name: contact
+    generate-unique-name: false

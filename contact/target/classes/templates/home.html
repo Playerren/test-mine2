@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Contacts</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+  
+  <body>
+    <h1>Spring boot Contacts</h1>
+<!-- tag::formTag[] -->
+    <form method="POST" th:object="${contact}">
+<!-- end::all[] -->
+
+      <div>
+      <h3>FirstName:</h3>
+      <input type="text" th:field="*{firstName}"/>
+<!-- end::all[] -->
+      <span class="validationError"
+            th:if="${#fields.hasErrors('firstName')}"
+            th:errors="*{firstName}">First name should have at least one character</span>
+<!-- tag::all[] -->
+      <h3>LastName:</h3>
+      <input type="text" th:field="*{lastName}"/>
+<!-- end::all[] -->
+      <span class="validationError"
+            th:if="${#fields.hasErrors('lastName')}"
+            th:errors="*{lastName}">Last name should have at least one character</span>
+      <h3>PhoneNumber:</h3>
+      <input type="text" th:field="*{phoneNumber}"/>
+      <span class="validationError"
+            th:if="${#fields.hasErrors('phoneNumber')}"
+            th:errors="*{phoneNumber}">Invalid phone number</span>
+
+      <h3>EmailAddress:</h3>
+      <input type="text" th:field="*{emailAddress}"/>
+      <span class="validationError"
+            th:if="${#fields.hasErrors('emailAddress')}"
+            th:errors="*{emailAddress}">Not null</span>
+      <br/>
+      <button>submit</button>
+      </div>
+      <ul>
+          <li th:each="c : ${list}">
+              <span th:text="${c.firstName}">First</span>
+              <span th:text="${c.lastName}">Last</span>
+              <span th:text="${c.phoneNumber}">phoneNumber</span>
+              <span th:text="${c.emailAddress}">emailAddress</span>
+          </li>
+      </ul>
+<!-- tag::closeFormTag[] -->
+    </form>
+<!-- end::closeFormTag[] -->
+  </body>
+</html>
+<!-- end::all[] -->
